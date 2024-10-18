@@ -1,0 +1,37 @@
+.ietvars {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgb(124, 215, 243);
+}
+
+h1 {
+    text-align: center;
+    background: rgb(103, 197, 226);
+    color: rgb(76, 93, 170);
+}
+
+ul {
+    text-align: center;
+    padding: 0px;
+}
+ li {
+    display: inline-block;
+ }
+
+.speles_lauk {
+    width: 500px;
+    background: cornflowerblue;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bloks {
+    display: inline-block;
+    background: rgb(64, 48, 151);
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    font-size: 45px;
+}
