@@ -8,7 +8,7 @@
 h1 {
     text-align: center;
     background: rgb(103, 197, 226);
-    color: rgb(76, 93, 170);
+    color: rgb(23, 38, 105);
 }
 
 ul {
@@ -35,3 +35,22 @@ ul {
     margin: 5px;
     font-size: 45px;
 }
+
+a {
+    background-color: rgb(46, 9, 180);
+    color: white;
+    padding: 10px 17px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: 2px rgb(115, 17, 180)
+  }
+
+  a:hover {
+    background-color: rgb(115, 17, 180);
+  }
+  a:active {
+    background-color: rgb(86, 51, 245);
+    color:rgb(124, 215, 243)
+  }
