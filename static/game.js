@@ -9,10 +9,10 @@ let klikski = 0
 const laukumi = ['L01','L02','L03','L04','L05','L06','L07','L08','L09','L10','L11','L12']
 const laukumiSaturs = ['👽','🤖','😇','👽','🤕','🤠','🤕','🥶','🤠','🤖','🥶','😇']
 let atvertieLaukumi = []
-let pedejieDivi =[]
+let pedejieDivi = []
 
 //Sajuc emoji nejaušā secībā
-let laukumiSajaukti = laukumiSaturs.sort(() =>Math.random() - 0.5);
+let laukumiSajaukti = laukumiSaturs.sort(() => Math.random() - 0.5);
 
 //Ģenerē spāles laukumu dinamiski
 document.addEventListener("DOMContentLoaded", function() {
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
         bloks.classList.add("bloks");
         bloks.setAttribute("data-index", index);
         bloks.innerText = "";
-        bloks.addEventListener("click", function(){
+        bloks.addEventListener("click", function() {
             veiktGajienu(bloks, emoji);
         });
         spelesLauks.appendChild(bloks);
@@ -61,7 +61,11 @@ function veiktGajienu(bloks, emoji) {
             //ja atvērtie 2 laikumi nav vienādi
             setTimeout(() => {
                 pirmais.bloks.innerText = "";
-            })
+                otrais.bloks.innerText = "";
+                pirmais.bloks.classList.remove('atverts');
+                otrais.bloks.classList.remove('atverts');
+                pedejieDivi = [];
+            }, 1000);
         }
     }
 }
