@@ -8,7 +8,7 @@ def savienot():
 def get_topresult():
     conn = sqlite3.connect('dati.db')
     c = conn.cursor()
-    c.execute("SELECT * FROM score")
+    c.execute("SELECT * FROM rezultati")
     rezultati = c.fetchall()
     conn.close()
     dati = [
@@ -21,7 +21,7 @@ def pievienot(dati):
     conn = sqlite3.connect('dati.db')
     c = conn.cursor()
     c.execute('''
-    INSER INTO score (vards, klikski, laiks, datums)
+    INSERT INTO rezultati (vards, klikski, laiks, datums)
     VALUE (?, ?, ?, ?)
     ''', (dati['vards'], dati['klikski'], dati['laiks'], dati['datums']))
     conn.commit()
