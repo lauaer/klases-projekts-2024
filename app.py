@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, jsonify
+from pathlib import Path
 import json
 from datubaze import get_topresult, pievienot 
 
-app = Flask(__name__)
+base_dir = Path(__file__).resolve().parent
+app = Flask(__name__, template_folder=str(base_dir / 'templates'), static_folder=str(base_dir / 'static'))
 
-#app = Flask('app')
 
 @app.route('/')
 def index():

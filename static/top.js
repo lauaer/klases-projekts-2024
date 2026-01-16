@@ -18,7 +18,8 @@ async function iegutDatusNoAi(url) {
     return await response.json();
 }
 
-async function atlasitTop() {
+async function atlasitTop() { 
+    try {
     let topJson = await iegutDatusNoAi('/topData');
     console.log('Top dati:', topJson);
     let tabula = document.querySelector('.tops');
@@ -31,6 +32,4 @@ async function atlasitTop() {
         <td>${ieraksts.datums}</td.>
         </tr>`;
     });
-} catch (kluda) {console.error("Kluda iegustot top datus", kluda)}
-}
-}
+} catch (kluda) {console.error("Kluda iegustot top datus", kluda);}}
