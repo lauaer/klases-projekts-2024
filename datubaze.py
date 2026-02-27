@@ -16,7 +16,7 @@ def get_topresult():
     rezultati = c.fetchall()
     conn.close()
     dati = [
-        {"id": r[0],"vards": r[1],"klikski": r[2], "laiks": r[3], "datums": r[4]}
+        {"id": r[0], "vards": r[1], "klikski": r[2], "laiks": r[3], "datums": r[4]}
         for r in rezultati
     ]
     return dati
@@ -26,7 +26,7 @@ def pievienot(dati):
     c = conn.cursor()
     c.execute('''
     INSERT INTO rezultati (vards, klikski, laiks, datums)
-    VALUE (?, ?, ?, ?)
+    VALUES (?, ?, ?, ?)
     ''', (dati['vards'], dati['klikski'], dati['laiks'], dati['datums']))
     conn.commit()
     conn.close()

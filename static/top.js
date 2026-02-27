@@ -59,27 +59,56 @@ function parseHash() {
         console.error("Kļūda iegūstot top datus", kluda);
     }
  }
- async function pieveinotiesTopam(rezultats) {
+
+ async function pievienotiesTopam(rezultats) {
     const poga = document.querySelector('#pievienotTopam');
-    const statuss = document.querySelector('#pieviemotStatuss');
+    const statuss = document.querySelector('#pievienotStatuss');
     try {
-        if (poga) poga.disable = true;
+        if (poga) poga.disabled = true;
         if (statuss) statuss.textContent = 'Saglabā...';
         const payload = {
-            vards: rezultats.vards, 
-            kliksk: rezultats.klikski,
+            vards: rezultats.vards,
+            klikski: rezultats.klikski,
             laiks: rezultats.laiks,
             datums: new Date().toISOString().split('T')[0]
         };
-        const response = await fetch('/pieveinot-rezultatu', {
+        const response = await fetch('/pievienot-rezultatu', {
             method: 'POST',
-            headers: {'Content-Type': 'application-json'}, 
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(payload)
         });
         if (!response.ok) {
-            throw new Error(`Neizdevās saglabāt! Statuss: ${response.statuss}`);
+            throw new Error(`Neizdevās saglabāt! Statuss: ${response.status}`);
         }
 
-        if (statuss) statuss.textContent = "Rezultāts ir pieveinots TOPam!";
+        if (statuss) statuss.textContent = "Rezultāts ir pievienots TOPam!";
+        await atlasitTop();
+    } catch (e) {
+        console.error(e);
+        if (statuss) statuss.textContent = "Kļūda, neizdevās pievienot rezultātu topam.";
+        if (poga) poga.disabled = false;
     }
  }
+
+
+ document.addEventListener('DOMContentLoaded', async () => {
+    await atlasitTop();
+    const rezultats = parseHash();
+    const konteiners = document.querySelector('#rezultatsKonteiners');
+    const poga = document.querySelector('#pievienotTopam');
+
+    if (rezultats && konteiners) {
+        konteiners.style.display = 'block';
+        document.querySelector('#rezVards').textContent = rezultats.vards;
+        document.querySelector('#rezKlikski').textContent = rezultats.klikski;
+        document.querySelector('#rezLaiks').textContent = formatTime(rezultats.laiks);
+
+        if (poga) {
+            poga.addEventListener('click', () => pievienotiesTopam(rezultats));
+        }
+
+
+    } else {
+        //ja nav spēles rezultāta, poga netiek rādīta (konteiners paliek display:none)
+    }
+ });

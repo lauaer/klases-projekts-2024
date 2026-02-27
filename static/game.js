@@ -1,3 +1,4 @@
+//no URL iegūst vārdu
 let adrese = window.location.hash.substring(1);
 let vards = decodeURI(adrese.split(',')[0] || '').trim();
 

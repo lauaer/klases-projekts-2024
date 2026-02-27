@@ -1,10 +1,10 @@
 import sqlite3
 
-#izveido db ja nav 
+#izveido db ja nav
 conn = sqlite3.connect('dati.db')
 c = conn.cursor()
 
-#izveido tebulu rezultātiem
+#izveido tabulu rezultātiem, labots tabula tops uz rezultati, un astlega auto...
 c.execute('''
 CREATE TABLE IF NOT EXISTS rezultati (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -30,10 +30,10 @@ ieraksti = [
 ]
 
 c.executemany('''
-INSERT IN rezultati (vards, klikski, laiks, datums)
+INSERT INTO rezultati (vards, klikski, laiks, datums)
 VALUES (?, ?, ?, ?)
 ''', ieraksti)
 
-#saglāba datus, aizver konekciju
+#saglabā datus, aizver konekciju
 conn.commit()
 conn.close()
